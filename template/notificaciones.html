@@ -1,0 +1,22 @@
+
+    <a href="" class="dropdown-toggle" data-toggle="dropdown">         <!-- Menu toggle button -->
+        <i class="fa fa-bell-o"></i>
+        <span class="label label-warning">{{ notificaciones.length }}</span>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li class="header">Tienes {{ notificaciones.length }} notificaciones.</li>
+        <li>
+            <ul class="menu">                                           <!-- Inner Menu: contains the notifications -->
+
+                <li ng-repeat="notificacion in notificaciones">                                                    <!-- start notification -->
+                    <a href="">
+                        <i class="fa {{ notificacion.icono }} text-info"></i>
+                        {{ notificacion.notificacion }}
+                    </a>
+                </li>                                                   <!-- end notification -->
+
+            </ul>
+        </li>
+        <li class="footer"><a href="">Todas las notificaciones</a></li>
+    </ul>
