@@ -1,12 +1,23 @@
 
     var app = angular.module('facturacionApp', [
-        'ngRoute',
+        'ngRoute', 'jcs-autoValidate',
         'facturacionApp.configuracion',
         'facturacionApp.mensajes',
         'facturacionApp.notificaciones',
         'facturacionApp.clientes',
         'facturacionApp.dashboardCtrl',
         'facturacionApp.clientesCtrl'
+    ]);
+
+
+    angular.module('jcs-autoValidate')
+    .run([
+        'defaultErrorMessageResolver',
+        function (defaultErrorMessageResolver) {
+            // To change the root resource file path
+            defaultErrorMessageResolver.setI18nFileRootPath('angular/lib');
+            defaultErrorMessageResolver.setCulture('es-co');
+        }
     ]);
 
 

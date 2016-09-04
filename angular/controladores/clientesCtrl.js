@@ -18,18 +18,34 @@
 
         $scope.moverA(pag);
 
+
+        // ====================================================== //
+        //  Guardar cliente ===================================== //
+        // ====================================================== //
+
+        $scope.guardar = function(cliente) {
+
+
+            Clientes.guardar(cliente).then(function() {
+
+
+            });
+
+
+
+        };
+
+
+
+
         // ====================================================== //
         //  Mostar modal ======================================== //
         // ====================================================== //
 
         $scope.mostarModal = function(cliente) {
-
-            console.log(cliente);
-
             angular.copy(cliente, $scope.clienteSel);                   // clona
-
             $('#modal_cliente').modal();
-        }
+        };
 
 
     }]);

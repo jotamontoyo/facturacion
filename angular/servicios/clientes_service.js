@@ -15,13 +15,27 @@
             'total_paginas' : 1,
             'paginas'	    : [],
 
-            cargarPagina: function(pag) {
+            guardar: function(cliente) {
 
                 var d = $q.defer();
 
+                $http.post('php/clientes/post.clienteguardar.php', cliente)
+                    .success(function(respuesta) {
+
+                        console.log(respuesta);
+
+                        d.resolve();
+
+                    });
+
+
+                return d.promise;
+            },
+
+            cargarPagina: function(pag) {
+                var d = $q.defer();
                 $http.get('php/clientes/get.clientes.php?pag=' + pag)       // envio de parametro por http
                     .success(function(data) {
-
                         self.err = data.err;
                         self.conteo = data.conteo;
                         self.clientes = data.clientes;
@@ -30,13 +44,9 @@
                         self.pag_anterior = data.pag_anterior;
                         self.total_paginas = data.total_paginas;
                         self.paginas = data.paginas;
-
                         return d.resolve();
-
                     });
-
                 return d.promise;
-
             }
 
         };
