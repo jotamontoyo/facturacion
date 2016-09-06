@@ -28,11 +28,26 @@
             $respuesta = array('err' => false, 'Mensaje' => 'Registro actualizado');
         } else {
             $respuesta = array('err' => true, 'Mensaje' => $hecho);
-        };
+        }
 
     } else {                            // insertar
 
-        echo json_encode('insertar');
+        $sql = "INSERT INTO clientes(nombre, correo, zip, telefono1, telefono2, pais, direccion)
+            VALUES ('". $request['nombre'] . "',
+                    '". $request['correo'] . "',
+                    '". $request['zip'] . "',
+                    '". $request['telefono1'] . "',
+                    '". $request['telefono2'] . "',
+                    '". $request['pais'] . "',
+                    '". $request['direccion'] . "')";
+
+        $hecho = Database::ejecutar_idu($sql);
+
+        if (is_numeric($hecho) OR $hecho === true) {
+            $respuesta = array('err' => false, 'Mensaje' => 'Registro añadido');
+        } else {
+            $respuesta = array('err' => true, 'Mensaje' => $hecho);
+        }
 
     };
 

@@ -19,24 +19,6 @@
         $scope.moverA(pag);
 
 
-        // ====================================================== //
-        //  Guardar cliente ===================================== //
-        // ====================================================== //
-
-        $scope.guardar = function(cliente) {
-
-
-            Clientes.guardar(cliente).then(function() {
-
-
-            });
-
-
-
-        };
-
-
-
 
         // ====================================================== //
         //  Mostar modal ======================================== //
@@ -45,6 +27,26 @@
         $scope.mostarModal = function(cliente) {
             angular.copy(cliente, $scope.clienteSel);                   // clona
             $('#modal_cliente').modal();
+        };
+
+
+        // ====================================================== //
+        //  Guardar cliente ===================================== //
+        // ====================================================== //
+
+        $scope.guardar = function(cliente) {                      // fCliente recibe los valores de los atributos del formulario
+
+            Clientes.guardar(cliente).then(function() {
+
+                $('#modal_cliente').modal('hide');
+                $scope.clienteSel = {};
+
+//                console.log(fCliente);
+
+//                fCliente.autoValidateFormOptions.resetForm();
+
+            });
+
         };
 
 
