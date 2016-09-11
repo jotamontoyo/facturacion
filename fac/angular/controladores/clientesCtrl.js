@@ -35,17 +35,13 @@
         // ====================================================== //
 
         $scope.guardar = function(cliente, fCliente) {                      // fCliente recibe los valores de los atributos del formulario
-
             Clientes.guardar(cliente).then(function() {
-
                 $('#modal_cliente').modal('hide');
                 $scope.clienteSel = {};
-
                 fCliente.autoValidateFormOptions.resetForm();
-
             });
-
         };
+
 
 
     }]);

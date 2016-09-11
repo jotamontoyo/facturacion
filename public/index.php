@@ -1,6 +1,12 @@
 
+<?php
+    session_start();
+    unset($_SESSION['user']);
+?>
+
+
 <!DOCTYPE html>
-<html>
+<html ng-app="loginApp" ng-controller="mainCtrl">
 
 <head>
     <meta charset="utf-8">
@@ -16,6 +22,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="AdminLTE.min.css">
+
+    <script type="text/javascript" src="angular/lib/angular.min.js"></script>
+    <script type="text/javascript" src="angular/app.js"></script>
+    <script type="text/javascript" src="angular/servicios/login_service.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,27 +49,53 @@
 
             <p class="login-box-msg">Iniciar sesión</p>
 
-            <form name="forma">
+            <form name="forma" ng-submit="ingresar(datos)">
 
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Usuario">
+                    <input type="text"
+                            class="form-control"
+                            placeholder="Usuario"
+                            name="usuario"
+                            required="required"
+                            ng-model="datos.usuario">
+
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input type="password"
+                            class="form-control"
+                            placeholder="Contraseña"
+                            name="contrasena"
+                            required="required"
+                            ng-model="datos.contrasena">
+
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
                 <div class="row">
-
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-flat"
+                                ng-disabled="forma.$invalid || cargando">
+                                Entrar
+                        </button>
                     </div>
-                    <!-- /.col -->
+                </div>
+
+                <div class="row" ng-show="invalido">
+                    <div class="col-md-12">
+                        <br>
+                        <div class="alert alert-danger">
+                            <strong>Verificar datos</strong>
+                            {{ mensaje }}
+                        </div>
+
+                    </div>
                 </div>
 
             </form>
+
 
         </div>
                 <!-- /.login-box-body -->
